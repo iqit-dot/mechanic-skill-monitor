@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST ประจำปี 2569 สำหรับช่างบริการ ณ ศูนย์อบรมสยามคูโบต้า</title>
+  <title>การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST สำหรับช่างบริการ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,10 +16,24 @@
     }
 
     body {
-      background: linear-gradient(135deg, #eef2f7 0%, #e2e8f0 100%);
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       padding: 24px 16px;
       color: #1e293b;
       min-height: 100vh;
+      position: relative;
+    }
+
+    /* Overlay เสริมเพื่อให้อ่านง่ายและสีสดขึ้น */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 25, 50, 0.25);
+      z-index: -1;
     }
 
     .container {
@@ -27,23 +41,26 @@
       margin: 0 auto;
     }
 
-    /* Header Section with Dual Logos */
+    /* Header Section (กระจกโปร่งแสง Glassmorphism) */
     .header-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 14px 28px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     }
 
     .header-logo {
       width: 75px;
       height: 75px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
     }
 
     .header-center {
@@ -63,11 +80,11 @@
     .controls-bar {
       display: inline-flex;
       align-items: center;
-      background: #113456;
+      background: #0d2847;
       color: #fff;
       padding: 6px 16px;
       border-radius: 30px;
-      box-shadow: 0 3px 8px rgba(17, 52, 86, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       gap: 12px;
     }
 
@@ -80,7 +97,7 @@
 
     .round-selector select {
       background: #ffffff;
-      color: #113456;
+      color: #0d2847;
       border: none;
       font-size: 15px;
       font-weight: 700;
@@ -124,24 +141,26 @@
 
     /* Station Card */
     .card {
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid #d8e2ec;
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
       display: flex;
       padding: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .card:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(-3px);
     }
 
-    /* Compact Sidebar */
+    /* Sidebar ช่องด้านซ้าย */
     .card-sidebar {
       width: 28%;
-      border-right: 1.5px solid #edf2f7;
+      border-right: 1.5px solid #e2e8f0;
       padding-right: 8px;
       display: flex;
       flex-direction: column;
@@ -151,8 +170,8 @@
     }
 
     .station-icon-wrap {
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       margin-bottom: 6px;
       display: flex;
       align-items: center;
@@ -167,13 +186,13 @@
     .station-name {
       font-size: 13px;
       font-weight: 700;
-      color: #1e3a5f;
+      color: #0f2b48;
       line-height: 1.25;
       margin-bottom: 6px;
     }
 
     .group-tag {
-      background: #113456;
+      background: #0d2847;
       color: #ffffff;
       font-size: 12px;
       font-weight: 700;
@@ -182,7 +201,7 @@
       white-space: nowrap;
     }
 
-    /* Expanded Content Area */
+    /* ช่องรายชื่อผู้แข่งขัน */
     .card-content {
       width: 72%;
       padding-left: 10px;
@@ -195,17 +214,18 @@
     .participant-row {
       display: flex;
       align-items: center;
-      background: #f8fafc;
-      border: 1px solid #edf2f7;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       padding: 4px 8px;
       border-radius: 6px;
       gap: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
     .avatar-icon {
       width: 22px;
       height: 22px;
-      background: #64748b;
+      background: #475569;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -251,13 +271,13 @@
       display: flex;
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid #113456;
+      border: 1px solid #0d2847;
       font-size: 10px;
       flex-shrink: 0;
     }
 
     .status-label {
-      background: #113456;
+      background: #0d2847;
       color: #fff;
       padding: 2px 5px;
       font-size: 9px;
@@ -286,7 +306,7 @@
       <img class="header-logo" src="logo.png" alt="KUBOTA Gold Medal All Star" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Kubota_logo.svg/512px-Kubota_logo.svg.png'">
       
       <div class="header-center">
-        <h1 class="title">การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST ประจำปี 2569 สำหรับช่างบริการ ณ ศูนย์อบรมสยามคูโบต้า</h1>
+        <h1 class="title">การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST สำหรับช่างบริการ</h1>
         <div class="controls-bar">
           <div class="round-selector">
             <span>รอบที่</span>
@@ -357,12 +377,12 @@
     };
 
     const stations = [
-      { id: 1, name: "แก้ไขปัญหา (ที่ตัวรถ)" },
+      { id: 1, name: "สอบการแก้ไขปัญหา (ที่ตัวรถจริง)" },
       { id: 2, name: "พัก" },
-      { id: 3, name: "ความรู้" },
-      { id: 4, name: "เครื่องมือวัด (ชิ้นส่วน)" },
-      { id: 5, name: "ถอด-ประกอบ (KIT)" },
-      { id: 6, name: "ตรวจเช็ก/ ปรับตั้ง ระบบ" }
+      { id: 3, name: "สอบภาคความรู้" },
+      { id: 4, name: "สอบเครื่องมือวัด (ชิ้นส่วน)" },
+      { id: 5, name: "งานถอด-ประกอบ (KIT)" },
+      { id: 6, name: "งานตรวจเช็ก/ปรับตั้งระบบ" }
     ];
 
     const groupsData = {
