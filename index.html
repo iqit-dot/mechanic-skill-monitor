@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>การแข่งขันทักษะช่างเหรียญทอง</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif;
+      font-family: 'Sarabun', sans-serif;
     }
 
     body {
-      background-color: #f0f2f5;
-      padding: 24px 16px;
-      color: #333;
+      background-color: #f4f6f9;
+      padding: 20px 16px;
+      color: #2c3e50;
     }
 
     .container {
@@ -23,59 +26,71 @@
       margin: 0 auto;
     }
 
-    /* Header */
+    /* Header Section */
     .header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .title {
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #112d4e;
     }
 
-    .round-selector {
+    .controls-bar {
       display: inline-flex;
       align-items: center;
       background-color: #1a4b6e;
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      gap: 12px;
+    }
+
+    .round-selector {
+      display: flex;
+      align-items: center;
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .round-selector select {
-      background: transparent;
-      color: #fff;
+      background: #fff;
+      color: #1a4b6e;
       border: none;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
       outline: none;
       cursor: pointer;
       margin-left: 8px;
     }
 
-    .round-selector select option {
-      color: #333;
+    .time-badge {
+      font-size: 15px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 4px;
     }
 
-    /* Grid Layout */
+    /* Stations Grid */
     .stations-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 16px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .stations-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
       .stations-grid {
         grid-template-columns: 1fr;
       }
@@ -83,18 +98,19 @@
 
     /* Station Card */
     .card {
-      background-color: #fae4d7;
-      border: 2px solid #2c3e50;
-      border-radius: 20px;
+      background-color: #fbeee6;
+      border: 1.5px solid #d9c5b2;
+      border-radius: 16px;
       display: flex;
-      padding: 16px 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      padding: 14px 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+      min-height: 240px;
     }
 
     .card-sidebar {
       width: 32%;
-      border-right: 2px solid #e0c8bb;
-      padding-right: 10px;
+      border-right: 1.5px dashed #d9c5b2;
+      padding-right: 8px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -103,23 +119,29 @@
     }
 
     .station-name {
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       line-height: 1.3;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      color: #2b3a4a;
     }
 
-    .group-name {
-      font-size: 14px;
-      color: #555;
+    .group-tag {
+      display: inline-block;
+      background-color: #1a4b6e;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
     }
 
     .card-content {
       width: 68%;
-      padding-left: 12px;
+      padding-left: 10px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 6px;
       justify-content: center;
     }
 
@@ -127,13 +149,16 @@
     .participant-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 4px 6px;
+      border-radius: 6px;
     }
 
     .avatar-icon {
-      width: 28px;
-      height: 28px;
-      background-color: #222;
+      width: 22px;
+      height: 22px;
+      background-color: #4a5568;
       border-radius: 50%;
       flex-shrink: 0;
       display: flex;
@@ -142,45 +167,64 @@
     }
 
     .avatar-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       fill: #fff;
     }
 
-    .participant-name {
+    .participant-info {
       flex: 1;
-      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    .p-tag {
+      font-size: 10px;
+      font-weight: bold;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .tag-cb { background-color: #e2e8f0; color: #334155; }
+    .tag-me { background-color: #fed7aa; color: #9a3412; }
+
+    .participant-name {
+      font-size: 13px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      cursor: text;
+      color: #1a202c;
     }
 
-    /* Status Switch Button Group */
+    /* Status Group */
     .status-group {
       display: flex;
       border-radius: 4px;
       overflow: hidden;
       border: 1px solid #1a4b6e;
-      font-size: 11px;
+      font-size: 10px;
       user-select: none;
+      flex-shrink: 0;
     }
 
     .status-label {
       background-color: #1a4b6e;
       color: #fff;
-      padding: 3px 6px;
-      font-size: 10px;
+      padding: 2px 5px;
       display: flex;
       align-items: center;
+      font-size: 9px;
     }
 
     .btn-status {
       border: none;
-      padding: 3px 6px;
+      padding: 2px 5px;
       cursor: pointer;
-      font-size: 11px;
-      transition: opacity 0.2s;
+      font-size: 10px;
+      font-weight: 500;
+      transition: background-color 0.2s;
     }
 
     .btn-done {
@@ -194,8 +238,8 @@
     }
 
     .btn-status.inactive {
-      background-color: #e9ecef;
-      color: #888;
+      background-color: #e2e8f0;
+      color: #64748b;
     }
   </style>
 </head>
@@ -204,14 +248,19 @@
   <div class="container">
     <div class="header">
       <h1 class="title">การแข่งขันทักษะช่างเหรียญทอง</h1>
-      <div class="round-selector">
-        <span>รอบที่</span>
-        <select id="roundSelect">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
+      <div class="controls-bar">
+        <div class="round-selector">
+          <span>รอบที่</span>
+          <select id="roundSelect" onchange="changeRound(this.value)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div class="time-badge" id="timeBadge">เวลา: 09:00 - 09:40</div>
       </div>
     </div>
 
@@ -220,45 +269,113 @@
 
   <script>
     const stations = [
-      { id: 1, name: "แก้ไขปัญหา (ที่ตัวรถ)", group: "กลุ่ม 1" },
-      { id: 2, name: "พัก", group: "กลุ่ม 2" },
-      { id: 3, name: "ความรู้", group: "กลุ่ม 3" },
-      { id: 4, name: "เครื่องมือวัด (ชิ้นส่วน)", group: "กลุ่ม 4" },
-      { id: 5, name: "ถอด-ประกอบ (KIT)", group: "กลุ่ม 5" },
-      { id: 6, name: "ตรวจเช็ก/ ปรับตั้ง ระบบ", group: "กลุ่ม 6" }
+      { id: 1, name: "แก้ไขปัญหา (ที่ตัวรถ)" },
+      { id: 2, name: "พัก" },
+      { id: 3, name: "ความรู้" },
+      { id: 4, name: "เครื่องมือวัด (ชิ้นส่วน)" },
+      { id: 5, name: "ถอด-ประกอบ (KIT)" },
+      { id: 6, name: "ตรวจเช็ก/ ปรับตั้ง ระบบ" }
     ];
 
-    const defaultParticipants = [
-      "ชื่อ-นามสกุล 1",
-      "ชื่อ-นามสกุล 2",
-      "ชื่อ-นามสกุล 3",
-      "ชื่อ-นามสกุล 4",
-      "ชื่อ-นามสกุล 5",
-      "ชื่อ-นามสกุล 6"
-    ];
+    const groupsData = {
+      1: [
+        { type: "CB", name: "ชิดณรงค์ พงษ์สระพัง" },
+        { type: "CB", name: "ทวิภพ สามขุนทด" },
+        { type: "CB", name: "สุทธิวัฒน์ ลิไธสง" },
+        { type: "CB", name: "อุนวัฒน์ น้อนสุข" },
+        { type: "ME", name: "อภิชาติ ขาวเหมาะ" },
+        { type: "ME", name: "นัชรูลเล๊าะ ดือเร๊ะ" },
+        { type: "ME", name: "เกียรติศักดิ์ อารักษ์พุทธพงศ์" }
+      ],
+      2: [
+        { type: "CB", name: "นัทธวัฒน์ ทึนรส" },
+        { type: "CB", name: "สิทธิศักดิ์ วิเชียรศรี" },
+        { type: "CB", name: "วัฒนา พุฒหยวก" },
+        { type: "CB", name: "ปรีชา ดวงจันทร์" },
+        { type: "ME", name: "สุรศักดิ์ มณีฉาย" },
+        { type: "ME", name: "วรพัฒน์ โสกันทัต" },
+        { type: "ME", name: "สมศักดิ์ วิเชียรทอง" }
+      ],
+      3: [
+        { type: "CB", name: "สันติ ขวัญใจ" },
+        { type: "CB", name: "วทัญญู ศรีกูลกิจ" },
+        { type: "CB", name: "พีรกานต์ พันธุทุม" },
+        { type: "CB", name: "พนมพร อุณาพรหม" },
+        { type: "ME", name: "มุกต์นริน อนันตทวีกุล" },
+        { type: "ME", name: "ธีรพล ชาวสวน" }
+      ],
+      4: [
+        { type: "CB", name: "ทิพกร หมั่นสกุล" },
+        { type: "CB", name: "ดัสกร เนาว์คศรีสอน" },
+        { type: "CB", name: "ประทีป หยองใหญ่" },
+        { type: "CB", name: "ณัฐพล สุดเนตร" },
+        { type: "ME", name: "มนตรา น้อยคล้าย" },
+        { type: "ME", name: "ศรายุทธ์ รัตนะ" }
+      ],
+      5: [
+        { type: "CB", name: "อาทิตย์ บุญสอน" },
+        { type: "CB", name: "ประมูล เสียงเพราะ" },
+        { type: "CB", name: "ปัญญา อันโยธา" },
+        { type: "CB", name: "กฤษฎา ซีชา" },
+        { type: "ME", name: "สุทธิพงษ์ เต็งประเสริฐ" },
+        { type: "ME", name: "อภิพัฒน์ รักพูนแก้ว" }
+      ],
+      6: [
+        { type: "CB", name: "บัณฑิต พันธ์ศรี" },
+        { type: "CB", name: "พรชัย มาลัยทอง" },
+        { type: "CB", name: "สับรี ตาเฮ" },
+        { type: "CB", name: "ประวิทย์ พรมเฮียง" },
+        { type: "ME", name: "ชัชวาล เต็มเปี่ยม" },
+        { type: "ME", name: "อาบาซ ตายงปากอ" },
+        { type: "ME", name: "อนันต์ สวนจันทร์" }
+      ]
+    };
+
+    // Flow rotation map
+    const roundsSchedule = {
+      1: { time: "09:00 - 09:40", mapping: [1, 2, 3, 4, 5, 6] },
+      2: { time: "09:55 - 10:35", mapping: [6, 1, 2, 3, 4, 5] },
+      3: { time: "10:50 - 11:30", mapping: [5, 6, 1, 2, 3, 4] },
+      4: { time: "11:45 - 12:25", mapping: [4, 5, 6, 1, 2, 3] },
+      5: { time: "13:35 - 14:15", mapping: [3, 4, 5, 6, 1, 2] },
+      6: { time: "14:30 - 15:10", mapping: [2, 3, 4, 5, 6, 1] }
+    };
+
+    let currentRound = 1;
+    let statusState = {};
 
     function renderBoard() {
+      const schedule = roundsSchedule[currentRound];
+      document.getElementById("timeBadge").innerText = `เวลา: ${schedule.time}`;
+
       const grid = document.getElementById("stationsGrid");
       grid.innerHTML = "";
 
-      stations.forEach((station) => {
+      stations.forEach((station, sIdx) => {
+        const assignedGroupId = schedule.mapping[sIdx];
+        const participants = groupsData[assignedGroupId] || [];
+
         const card = document.createElement("div");
         card.className = "card";
 
         let participantsHTML = "";
-        defaultParticipants.forEach((pName, pIndex) => {
+        participants.forEach((p, pIdx) => {
+          const stateKey = `r${currentRound}_s${station.id}_p${pIdx}`;
+          const currentStatus = statusState[stateKey] || "pending";
+
           participantsHTML += `
             <div class="participant-row">
               <div class="avatar-icon">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
               </div>
-              <div class="participant-name" contenteditable="true" title="คลิกเพื่อแก้ไขชื่อ">${pName}</div>
+              <div class="participant-info">
+                <span class="p-tag tag-${p.type.toLowerCase()}">${p.type}</span>
+                <span class="participant-name" title="${p.name}">${p.name}</span>
+              </div>
               <div class="status-group">
                 <div class="status-label">สถานะ</div>
-                <button class="btn-status btn-done inactive" onclick="setStatus(this, 'done')">เสร็จ</button>
-                <button class="btn-status btn-pending" onclick="setStatus(this, 'pending')">ยังไม่เสร็จ</button>
+                <button class="btn-status btn-done ${currentStatus === 'done' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'done', this)">เสร็จ</button>
+                <button class="btn-status btn-pending ${currentStatus === 'pending' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'pending', this)">ยังไม่เสร็จ</button>
               </div>
             </div>
           `;
@@ -267,7 +384,7 @@
         card.innerHTML = `
           <div class="card-sidebar">
             <div class="station-name">${station.name}</div>
-            <div class="group-name">${station.group}</div>
+            <div class="group-tag">กลุ่ม ${assignedGroupId}</div>
           </div>
           <div class="card-content">
             ${participantsHTML}
@@ -278,7 +395,13 @@
       });
     }
 
-    function setStatus(btn, status) {
+    function changeRound(roundNum) {
+      currentRound = parseInt(roundNum);
+      renderBoard();
+    }
+
+    function setStatus(key, status, btn) {
+      statusState[key] = status;
       const group = btn.parentElement;
       const doneBtn = group.querySelector(".btn-done");
       const pendingBtn = group.querySelector(".btn-pending");
