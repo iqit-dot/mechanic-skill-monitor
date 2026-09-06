@@ -147,10 +147,10 @@
       height: 100%;
     }
 
-    /* Sidebar ปรับให้แคบลงเหลือ 17% เพื่อประหยัดพื้นที่ */
+    /* Sidebar ช่องด้านซ้าย */
     .card-sidebar {
       width: 17%;
-      min-width: 78px;
+      min-width: 80px;
       border-right: 1.5px solid #e2e8f0;
       padding-right: 4px;
       display: flex;
@@ -201,7 +201,7 @@
     .group-tag.g-5 { background: linear-gradient(135deg, #0284c7, #0369a1); }
     .group-tag.g-6 { background: linear-gradient(135deg, #e11d48, #9f1239); }
 
-    /* Content ฝั่งขวา ขยายเต็มที่ 83% */
+    /* Content ฝั่งขวา */
     .card-content {
       width: 83%;
       padding-left: 6px;
@@ -242,7 +242,6 @@
       fill: #ffffff;
     }
 
-    /* ขยายพื้นที่ชื่อให้มากที่สุด */
     .participant-info {
       flex: 1;
       display: flex;
@@ -274,28 +273,38 @@
       flex: 1;
     }
 
-    /* ปรับปุ่ม Status แบบ Mini Capsule กะทัดรัดมาก ไม่แย่งพื้นที่ชื่อ */
-    .status-mini-group {
+    /* ปรับช่อง STATUS เป็นภาษาอังกฤษขนาดกะทัดรัด (Slim & Compact) */
+    .status-group {
       display: flex;
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #0d2847;
       flex-shrink: 0;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
     }
 
-    .btn-status-mini {
-      border: none;
-      padding: 2px 8px;
-      cursor: pointer;
-      font-size: 10.5px;
+    .status-label {
+      background: #0d2847;
+      color: #fff;
+      padding: 1px 4px;
+      font-size: 9px;
       font-weight: 800;
-      font-family: 'Sarabun', sans-serif;
-      transition: all 0.15s ease;
-      display: inline-flex;
+      letter-spacing: 0.3px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1.2;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .btn-status {
+      border: none;
+      padding: 1px 5px;
+      cursor: pointer;
+      font-size: 9.5px;
+      font-weight: 800;
+      font-family: 'Chakra Petch', sans-serif;
+      letter-spacing: 0.2px;
+      transition: all 0.15s ease;
     }
 
     .btn-done {
@@ -308,12 +317,12 @@
       color: #ffffff;
     }
 
-    .btn-status-mini.inactive {
+    .btn-status.inactive {
       background: #f1f5f9;
       color: #94a3b8;
     }
 
-    .btn-status-mini:not(.inactive):hover {
+    .btn-status:not(.inactive):hover {
       filter: brightness(1.15);
     }
   </style>
@@ -500,9 +509,10 @@
                 <span class="p-tag tag-${p.type.toLowerCase()}">${p.type}</span>
                 <span class="participant-name" title="${p.name}">${p.name}</span>
               </div>
-              <div class="status-mini-group">
-                <button class="btn-status-mini btn-done ${currentStatus === 'done' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'done', this)">เสร็จ</button>
-                <button class="btn-status-mini btn-pending ${currentStatus === 'pending' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'pending', this)">รอ</button>
+              <div class="status-group">
+                <div class="status-label">STATUS</div>
+                <button class="btn-status btn-done ${currentStatus === 'done' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'done', this)">COMPLETED</button>
+                <button class="btn-status btn-pending ${currentStatus === 'pending' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'pending', this)">PENDING</button>
               </div>
             </div>
           `;
