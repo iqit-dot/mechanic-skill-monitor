@@ -6,7 +6,7 @@
   <title>การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST สำหรับช่างบริการ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&family=Chakra+Petch:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -18,9 +18,11 @@
     body {
       background: url('bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      padding: 20px 16px;
+      height: 100vh;
+      width: 100vw;
+      padding: 14px 20px;
       color: #1e293b;
-      min-height: 100vh;
+      overflow: hidden; /* ไม่ให้เกิด Scrollbar เพื่อเป็น Dashboard สมบูรณ์แบบ */
       position: relative;
     }
 
@@ -31,36 +33,39 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 25, 50, 0.3);
+      background: rgba(10, 25, 50, 0.28);
       z-index: -1;
     }
 
-    .container {
-      max-width: 1560px;
-      margin: 0 auto;
+    .dashboard-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    /* Header Section */
+    /* Header Bar */
     .header-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: 12px 28px;
-      border-radius: 18px;
+      padding: 10px 24px;
+      border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
     }
 
     .header-logo {
-      width: 75px;
-      height: 75px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
-      border-radius: 8px;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+      border-radius: 6px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
     }
 
     .header-center {
@@ -74,7 +79,7 @@
       font-weight: 800;
       color: #0f2b48;
       letter-spacing: 0.5px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .controls-bar {
@@ -82,26 +87,28 @@
       align-items: center;
       background: #0d2847;
       color: #fff;
-      padding: 5px 18px;
+      padding: 4px 18px;
       border-radius: 30px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      gap: 12px;
+      gap: 16px;
     }
 
     .round-selector {
       display: flex;
       align-items: center;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: 'Chakra Petch', sans-serif;
     }
 
     .round-selector select {
       background: #ffffff;
       color: #0d2847;
       border: none;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
-      padding: 3px 10px;
+      font-family: 'Chakra Petch', sans-serif;
+      padding: 3px 12px;
       border-radius: 12px;
       margin-left: 8px;
       cursor: pointer;
@@ -109,34 +116,22 @@
     }
 
     .time-badge {
-      font-size: 14px;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.18);
-      padding: 3px 12px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Chakra Petch', sans-serif;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 3px 14px;
       border-radius: 12px;
     }
 
-    /* Stations Grid */
+    /* Grid 3 Columns x 2 Rows เต็มพื้นที่ */
     .stations-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    @media (max-width: 1200px) {
-      .stations-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .stations-grid {
-        grid-template-columns: 1fr;
-      }
-      .header-wrapper {
-        flex-direction: column;
-        gap: 12px;
-      }
+      grid-template-rows: repeat(2, 1fr);
+      gap: 14px;
+      flex: 1;
+      min-height: 0; /* ป้องกันการล้นจอ */
     }
 
     /* Card */
@@ -144,23 +139,19 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
       display: flex;
-      padding: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 10px 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      height: 100%;
     }
 
-    .card:hover {
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-      transform: translateY(-2px);
-    }
-
-    /* Sidebar ฝั่งซ้ายปรับให้แคบลง (19%) */
+    /* Sidebar ช่องด้านซ้าย */
     .card-sidebar {
-      width: 19%;
-      min-width: 85px;
+      width: 22%;
+      min-width: 95px;
       border-right: 2px solid #e2e8f0;
       padding-right: 8px;
       display: flex;
@@ -168,12 +159,13 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      flex-shrink: 0;
     }
 
     .station-icon-wrap {
-      width: 44px;
-      height: 44px;
-      margin-bottom: 6px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -185,32 +177,33 @@
     }
 
     .station-name {
-      font-size: 12.5px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #0f2b48;
-      line-height: 1.2;
+      line-height: 1.25;
       margin-bottom: 6px;
-      word-break: break-word;
     }
 
     .group-tag {
       background: #0d2847;
       color: #ffffff;
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 14px;
       white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* Content ฝั่งขวาขยายพื้นที่เพิ่มขึ้น (81%) */
+    /* Participants Content */
     .card-content {
-      width: 81%;
+      width: 78%;
       padding-left: 10px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      justify-content: center;
+      justify-content: space-between; /* กระจายแถวให้เต็มความสูงการ์ดพอดี */
+      gap: 4px;
+      height: 100%;
     }
 
     .participant-row {
@@ -218,10 +211,12 @@
       align-items: center;
       background: #ffffff;
       border: 1px solid #cbd5e1;
-      padding: 5px 8px;
+      padding: 0 10px;
       border-radius: 6px;
-      gap: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      gap: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      flex: 1; /* ยืดแถวให้สูงเท่ากันพอดี */
+      min-height: 32px;
     }
 
     .avatar-icon {
@@ -245,16 +240,16 @@
       flex: 1;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       overflow: hidden;
       min-width: 0;
     }
 
     .p-tag {
       font-family: 'Chakra Petch', sans-serif;
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 1px 5px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 6px;
       border-radius: 4px;
       flex-shrink: 0;
     }
@@ -263,29 +258,29 @@
     .tag-me { background: #ffedd5; color: #c2410c; }
 
     .participant-name {
-      font-size: 13.5px;
-      font-weight: 600;
+      font-size: 14.5px;
+      font-weight: 700;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       color: #0f172a;
     }
 
-    /* Status Bar ชัดเจน กะทัดรัด */
+    /* Status Bar เต็มตาและชัดเจน */
     .status-group {
       display: flex;
-      border-radius: 5px;
+      border-radius: 6px;
       overflow: hidden;
       border: 1.5px solid #0d2847;
       flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .status-label {
       background: #0d2847;
       color: #fff;
-      padding: 3px 6px;
-      font-size: 10px;
+      padding: 3px 8px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.5px;
       display: flex;
@@ -296,13 +291,13 @@
 
     .btn-status {
       border: none;
-      padding: 3px 8px;
+      padding: 3px 10px;
       cursor: pointer;
-      font-size: 10.5px;
+      font-size: 11.5px;
       font-weight: 800;
       font-family: 'Chakra Petch', sans-serif;
-      letter-spacing: 0.3px;
-      transition: all 0.2s ease;
+      letter-spacing: 0.4px;
+      transition: all 0.15s ease;
     }
 
     .btn-done {
@@ -321,13 +316,14 @@
     }
 
     .btn-status:not(.inactive):hover {
-      filter: brightness(1.1);
+      filter: brightness(1.15);
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="dashboard-container">
+    <!-- Header -->
     <div class="header-wrapper">
       <img class="header-logo" src="Logo.jpg" alt="KUBOTA Logo Left">
       
@@ -352,6 +348,7 @@
       <img class="header-logo" src="Logo.jpg" alt="KUBOTA Logo Right">
     </div>
 
+    <!-- 6 Stations Grid -->
     <div class="stations-grid" id="stationsGrid"></div>
   </div>
 
@@ -408,7 +405,7 @@
       { id: 3, name: "สอบภาคความรู้" },
       { id: 4, name: "งานเครื่องมือวัด (ชิ้นส่วน)" },
       { id: 5, name: "งานถอด-ประกอบ (KIT)" },
-      { id: 6, name: "งานตรวจเช็ก/ปรับตั้งระบบ" }
+      { id: 6, name: "งานตรวจเช็ก/ ปรับตั้งระบบ" }
     ];
 
     const groupsData = {
