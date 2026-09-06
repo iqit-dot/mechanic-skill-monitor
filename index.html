@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST สำหรับช่างบริการ</title>
+  <title>การแข่งขันทักษะช่างเหรียญทอง - KUBOTA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
       position: relative;
     }
 
-    /* Overlay เสริมเพื่อให้อ่านง่ายและสีสดขึ้น */
+    /* Overlay เสริมให้อ่านตัวหนังสือและดูรายละเอียดได้ชัดเจน */
     body::before {
       content: '';
       position: fixed;
@@ -41,7 +41,7 @@
       margin: 0 auto;
     }
 
-    /* Header Section (กระจกโปร่งแสง Glassmorphism) */
+    /* Header Section */
     .header-wrapper {
       display: flex;
       align-items: center;
@@ -60,6 +60,7 @@
       width: 75px;
       height: 75px;
       object-fit: contain;
+      border-radius: 8px;
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
     }
 
@@ -303,10 +304,10 @@
 
   <div class="container">
     <div class="header-wrapper">
-      <img class="header-logo" src="logo.png" alt="KUBOTA Gold Medal All Star" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Kubota_logo.svg/512px-Kubota_logo.svg.png'">
+      <img class="header-logo" src="Logo.jpg" alt="KUBOTA Logo Left">
       
       <div class="header-center">
-        <h1 class="title">การแข่งขันทักษะ GOLD MEDAL ALL STAR SKILL CONTEST สำหรับช่างบริการ</h1>
+        <h1 class="title">การแข่งขันทักษะช่างเหรียญทอง</h1>
         <div class="controls-bar">
           <div class="round-selector">
             <span>รอบที่</span>
@@ -323,7 +324,7 @@
         </div>
       </div>
 
-      <img class="header-logo" src="logo.png" alt="KUBOTA Gold Medal All Star" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Kubota_logo.svg/512px-Kubota_logo.svg.png'">
+      <img class="header-logo" src="Logo.jpg" alt="KUBOTA Logo Right">
     </div>
 
     <div class="stations-grid" id="stationsGrid"></div>
@@ -377,12 +378,12 @@
     };
 
     const stations = [
-      { id: 1, name: "สอบการแก้ไขปัญหา (ที่ตัวรถจริง)" },
+      { id: 1, name: "แก้ไขปัญหา (ที่ตัวรถ)" },
       { id: 2, name: "พัก" },
-      { id: 3, name: "สอบภาคความรู้" },
-      { id: 4, name: "สอบเครื่องมือวัด (ชิ้นส่วน)" },
-      { id: 5, name: "งานถอด-ประกอบ (KIT)" },
-      { id: 6, name: "งานตรวจเช็ก/ปรับตั้งระบบ" }
+      { id: 3, name: "ความรู้" },
+      { id: 4, name: "เครื่องมือวัด (ชิ้นส่วน)" },
+      { id: 5, name: "ถอด-ประกอบ (KIT)" },
+      { id: 6, name: "ตรวจเช็ก/ ปรับตั้ง ระบบ" }
     ];
 
     const groupsData = {
