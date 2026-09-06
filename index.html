@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>การแข่งขันทักษะช่างเหรียญทอง</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      padding: 24px 16px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .round-selector {
+      display: inline-flex;
+      align-items: center;
+      background-color: #1a4b6e;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .round-selector select {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .round-selector select option {
+      color: #333;
+    }
+
+    /* Grid Layout */
+    .stations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .stations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .stations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Station Card */
+    .card {
+      background-color: #fae4d7;
+      border: 2px solid #2c3e50;
+      border-radius: 20px;
+      display: flex;
+      padding: 16px 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .card-sidebar {
+      width: 32%;
+      border-right: 2px solid #e0c8bb;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .station-name {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .group-name {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .card-content {
+      width: 68%;
+      padding-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    /* Participant Row */
+    .participant-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar-icon {
+      width: 28px;
+      height: 28px;
+      background-color: #222;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    .participant-name {
+      flex: 1;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: text;
+    }
+
+    /* Status Switch Button Group */
+    .status-group {
+      display: flex;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #1a4b6e;
+      font-size: 11px;
+      user-select: none;
+    }
+
+    .status-label {
+      background-color: #1a4b6e;
+      color: #fff;
+      padding: 3px 6px;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-status {
+      border: none;
+      padding: 3px 6px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-done {
+      background-color: #198754;
+      color: #fff;
+    }
+
+    .btn-pending {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-status.inactive {
+      background-color: #e9ecef;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1 class="title">การแข่งขันทักษะช่างเหรียญทอง</h1>
+      <div class="round-selector">
+        <span>รอบที่</span>
+        <select id="roundSelect">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stations-grid" id="stationsGrid"></div>
+  </div>
+
+  <script>
+    const stations = [
+      { id: 1, name: "แก้ไขปัญหา (ที่ตัวรถ)", group: "กลุ่ม 1" },
+      { id: 2, name: "พัก", group: "กลุ่ม 2" },
+      { id: 3, name: "ความรู้", group: "กลุ่ม 3" },
+      { id: 4, name: "เครื่องมือวัด (ชิ้นส่วน)", group: "กลุ่ม 4" },
+      { id: 5, name: "ถอด-ประกอบ (KIT)", group: "กลุ่ม 5" },
+      { id: 6, name: "ตรวจเช็ก/ ปรับตั้ง ระบบ", group: "กลุ่ม 6" }
+    ];
+
+    const defaultParticipants = [
+      "ชื่อ-นามสกุล 1",
+      "ชื่อ-นามสกุล 2",
+      "ชื่อ-นามสกุล 3",
+      "ชื่อ-นามสกุล 4",
+      "ชื่อ-นามสกุล 5",
+      "ชื่อ-นามสกุล 6"
+    ];
+
+    function renderBoard() {
+      const grid = document.getElementById("stationsGrid");
+      grid.innerHTML = "";
+
+      stations.forEach((station) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        let participantsHTML = "";
+        defaultParticipants.forEach((pName, pIndex) => {
+          participantsHTML += `
+            <div class="participant-row">
+              <div class="avatar-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+              <div class="participant-name" contenteditable="true" title="คลิกเพื่อแก้ไขชื่อ">${pName}</div>
+              <div class="status-group">
+                <div class="status-label">สถานะ</div>
+                <button class="btn-status btn-done inactive" onclick="setStatus(this, 'done')">เสร็จ</button>
+                <button class="btn-status btn-pending" onclick="setStatus(this, 'pending')">ยังไม่เสร็จ</button>
+              </div>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="card-sidebar">
+            <div class="station-name">${station.name}</div>
+            <div class="group-name">${station.group}</div>
+          </div>
+          <div class="card-content">
+            ${participantsHTML}
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function setStatus(btn, status) {
+      const group = btn.parentElement;
+      const doneBtn = group.querySelector(".btn-done");
+      const pendingBtn = group.querySelector(".btn-pending");
+
+      if (status === "done") {
+        doneBtn.classList.remove("inactive");
+        pendingBtn.classList.add("inactive");
+      } else {
+        pendingBtn.classList.remove("inactive");
+        doneBtn.classList.add("inactive");
+      }
+    }
+
+    renderBoard();
+  </script>
+</body>
+</html>
