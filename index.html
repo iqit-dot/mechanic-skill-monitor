@@ -20,7 +20,7 @@
       background-size: cover;
       height: 100vh;
       width: 100vw;
-      padding: 12px 18px;
+      padding: 10px 16px;
       color: #1e293b;
       overflow: hidden;
       position: relative;
@@ -42,7 +42,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     /* Header Bar */
@@ -50,36 +50,35 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: 8px 24px;
-      border-radius: 14px;
+      padding: 6px 20px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       flex-shrink: 0;
     }
 
     .header-logo {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       object-fit: contain;
       border-radius: 6px;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
     }
 
     .header-center {
       text-align: center;
       flex: 1;
-      padding: 0 16px;
+      padding: 0 12px;
     }
 
     .title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       color: #0f2b48;
       letter-spacing: 0.5px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .controls-bar {
@@ -87,16 +86,16 @@
       align-items: center;
       background: #0d2847;
       color: #fff;
-      padding: 3px 16px;
+      padding: 2px 14px;
       border-radius: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      gap: 14px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+      gap: 12px;
     }
 
     .round-selector {
       display: flex;
       align-items: center;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       font-family: 'Chakra Petch', sans-serif;
     }
@@ -105,23 +104,23 @@
       background: #ffffff;
       color: #0d2847;
       border: none;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       font-family: 'Chakra Petch', sans-serif;
-      padding: 2px 10px;
-      border-radius: 12px;
-      margin-left: 8px;
+      padding: 1px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
       cursor: pointer;
       outline: none;
     }
 
     .time-badge {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       font-family: 'Chakra Petch', sans-serif;
       background: rgba(255, 255, 255, 0.2);
-      padding: 2px 12px;
-      border-radius: 12px;
+      padding: 1px 10px;
+      border-radius: 10px;
     }
 
     /* Grid 3 Columns x 2 Rows */
@@ -129,31 +128,31 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
       flex: 1;
       min-height: 0;
     }
 
     /* Card */
     .card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
       display: flex;
-      padding: 8px 10px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      padding: 6px 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
       overflow: hidden;
       height: 100%;
     }
 
-    /* Sidebar ช่องด้านซ้าย */
+    /* Sidebar ปรับให้แคบลงเหลือ 17% เพื่อประหยัดพื้นที่ */
     .card-sidebar {
-      width: 22%;
-      min-width: 100px;
-      border-right: 2px solid #e2e8f0;
-      padding-right: 8px;
+      width: 17%;
+      min-width: 78px;
+      border-right: 1.5px solid #e2e8f0;
+      padding-right: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -163,9 +162,9 @@
     }
 
     .station-icon-wrap {
-      width: 44px;
-      height: 44px;
-      margin-bottom: 6px;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,46 +175,40 @@
       height: 100%;
     }
 
-    /* ปรับระยะบรรทัดชื่อสถานีให้อ่านง่าย ไม่ติดกัน */
     .station-name {
-      font-size: 13.5px;
+      font-size: 12px;
       font-weight: 800;
       color: #0f2b48;
-      line-height: 1.45;
-      margin-bottom: 8px;
+      line-height: 1.35;
+      margin-bottom: 5px;
       word-break: break-word;
-      padding: 0 2px;
     }
 
-    /* ป้ายกลุ่มที่ขนาดใหญ่ขึ้น เด่นชัด */
     .group-tag {
       color: #ffffff;
-      font-size: 14.5px;
+      font-size: 12.5px;
       font-weight: 800;
-      padding: 5px 16px;
-      border-radius: 20px;
+      padding: 3px 10px;
+      border-radius: 14px;
       white-space: nowrap;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.22);
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* สีเฉพาะของทั้ง 6 กลุ่ม */
-    .group-tag.g-1 { background: linear-gradient(135deg, #1e3a8a, #0d2847); } /* น้ำเงินเข้ม */
-    .group-tag.g-2 { background: linear-gradient(135deg, #059669, #047857); } /* เขียวมรกต */
-    .group-tag.g-3 { background: linear-gradient(135deg, #ea580c, #c2410c); } /* ส้มคูโบต้า */
-    .group-tag.g-4 { background: linear-gradient(135deg, #7c3aed, #5b21b6); } /* ม่วงพรีเมียม */
-    .group-tag.g-5 { background: linear-gradient(135deg, #0284c7, #0369a1); } /* ฟ้าเข้ม */
-    .group-tag.g-6 { background: linear-gradient(135deg, #e11d48, #9f1239); } /* แดงทับทิม */
+    .group-tag.g-1 { background: linear-gradient(135deg, #1e3a8a, #0d2847); }
+    .group-tag.g-2 { background: linear-gradient(135deg, #059669, #047857); }
+    .group-tag.g-3 { background: linear-gradient(135deg, #ea580c, #c2410c); }
+    .group-tag.g-4 { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+    .group-tag.g-5 { background: linear-gradient(135deg, #0284c7, #0369a1); }
+    .group-tag.g-6 { background: linear-gradient(135deg, #e11d48, #9f1239); }
 
-    /* Participants Content */
+    /* Content ฝั่งขวา ขยายเต็มที่ 83% */
     .card-content {
-      width: 78%;
-      padding-left: 8px;
+      width: 83%;
+      padding-left: 6px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 3px;
+      gap: 2px;
       height: 100%;
     }
 
@@ -224,17 +217,17 @@
       align-items: center;
       background: #ffffff;
       border: 1px solid #cbd5e1;
-      padding: 0 8px;
-      border-radius: 6px;
+      padding: 0 6px;
+      border-radius: 5px;
       gap: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       flex: 1;
-      min-height: 28px;
+      min-height: 25px;
     }
 
     .avatar-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: #475569;
       border-radius: 50%;
       display: flex;
@@ -244,11 +237,12 @@
     }
 
     .avatar-icon svg {
-      width: 12px;
-      height: 12px;
+      width: 11px;
+      height: 11px;
       fill: #ffffff;
     }
 
+    /* ขยายพื้นที่ชื่อให้มากที่สุด */
     .participant-info {
       flex: 1;
       display: flex;
@@ -263,55 +257,45 @@
       font-size: 11px;
       font-weight: 800;
       padding: 1px 4px;
-      border-radius: 4px;
+      border-radius: 3px;
       flex-shrink: 0;
     }
 
     .tag-cb { background: #e2e8f0; color: #1e293b; }
     .tag-me { background: #ffedd5; color: #c2410c; }
 
-    /* ปรับให้แสดงชื่อ-นามสกุล ได้ยาวและชัดเจน */
     .participant-name {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       color: #0f172a;
+      flex: 1;
     }
 
-    /* ปรับขนาดช่อง Status ให้กะทัดรัด (Compact) เพื่อไม่ให้แย่งพื้นที่ชื่อ */
-    .status-group {
+    /* ปรับปุ่ม Status แบบ Mini Capsule กะทัดรัดมาก ไม่แย่งพื้นที่ชื่อ */
+    .status-mini-group {
       display: flex;
-      border-radius: 5px;
+      border-radius: 4px;
       overflow: hidden;
-      border: 1.2px solid #0d2847;
+      border: 1px solid #cbd5e1;
       flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
     }
 
-    .status-label {
-      background: #0d2847;
-      color: #fff;
-      padding: 2px 5px;
-      font-size: 9.5px;
+    .btn-status-mini {
+      border: none;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-size: 10.5px;
       font-weight: 800;
-      letter-spacing: 0.3px;
-      display: flex;
+      font-family: 'Sarabun', sans-serif;
+      transition: all 0.15s ease;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Chakra Petch', sans-serif;
-    }
-
-    .btn-status {
-      border: none;
-      padding: 2px 6px;
-      cursor: pointer;
-      font-size: 10px;
-      font-weight: 800;
-      font-family: 'Chakra Petch', sans-serif;
-      letter-spacing: 0.2px;
-      transition: all 0.15s ease;
+      line-height: 1.2;
     }
 
     .btn-done {
@@ -324,12 +308,12 @@
       color: #ffffff;
     }
 
-    .btn-status.inactive {
+    .btn-status-mini.inactive {
       background: #f1f5f9;
       color: #94a3b8;
     }
 
-    .btn-status:not(.inactive):hover {
+    .btn-status-mini:not(.inactive):hover {
       filter: brightness(1.15);
     }
   </style>
@@ -516,10 +500,9 @@
                 <span class="p-tag tag-${p.type.toLowerCase()}">${p.type}</span>
                 <span class="participant-name" title="${p.name}">${p.name}</span>
               </div>
-              <div class="status-group">
-                <div class="status-label">STATUS</div>
-                <button class="btn-status btn-done ${currentStatus === 'done' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'done', this)">COMPLETED</button>
-                <button class="btn-status btn-pending ${currentStatus === 'pending' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'pending', this)">PENDING</button>
+              <div class="status-mini-group">
+                <button class="btn-status-mini btn-done ${currentStatus === 'done' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'done', this)">เสร็จ</button>
+                <button class="btn-status-mini btn-pending ${currentStatus === 'pending' ? '' : 'inactive'}" onclick="setStatus('${stateKey}', 'pending', this)">รอ</button>
               </div>
             </div>
           `;
